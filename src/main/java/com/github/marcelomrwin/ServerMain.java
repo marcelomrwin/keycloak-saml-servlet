@@ -2,6 +2,7 @@ package com.github.marcelomrwin;
 
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.FilterHolder;
+import org.eclipse.jetty.servlet.ServletHolder;
 import org.eclipse.jetty.util.resource.Resource;
 import org.eclipse.jetty.webapp.WebAppContext;
 import org.keycloak.adapters.saml.servlet.SamlFilter;
@@ -20,6 +21,8 @@ public class ServerMain {
         WebAppContext webAppContext = new WebAppContext();
         webAppContext.setContextPath("/");
         webAppContext.addServlet(SecureServlet.class, "/secure/*");
+
+
         FilterHolder filterHolder = webAppContext.addFilter(SamlFilter.class, "/secure/*", EnumSet.of(DispatcherType.REQUEST));
         filterHolder.setInitParameter("keycloak.config.path", "/keycloak-saml.xml");
         webAppContext.addFilter(filterHolder, "/saml", EnumSet.of(DispatcherType.REQUEST));

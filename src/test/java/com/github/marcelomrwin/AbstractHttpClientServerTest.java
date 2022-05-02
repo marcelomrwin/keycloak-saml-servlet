@@ -5,6 +5,7 @@ import org.eclipse.jetty.server.Handler;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.ServerConnector;
 import org.eclipse.jetty.toolchain.test.TestTracker;
+import org.eclipse.jetty.toolchain.test.TestingDir;
 import org.eclipse.jetty.util.ssl.SslContextFactory;
 import org.eclipse.jetty.util.thread.QueuedThreadPool;
 import org.junit.After;
@@ -17,6 +18,9 @@ public abstract class AbstractHttpClientServerTest {
 
     @Rule
     public final TestTracker tracker = new TestTracker();
+
+    @Rule
+    public TestingDir testdir = new TestingDir();
 
     protected SslContextFactory sslContextFactory;
     protected String scheme;
@@ -38,20 +42,13 @@ public abstract class AbstractHttpClientServerTest {
     }
 
     protected void startServer(Handler handler) throws Exception {
-        if (sslContextFactory != null) {
-            sslContextFactory.setEndpointIdentificationAlgorithm("");
-            sslContextFactory.setKeyStorePath("src/test/resources/keystore.jks");
-            sslContextFactory.setKeyStorePassword("123456");
-            sslContextFactory.setTrustStorePath("src/test/resources/keystore.jks");
-            sslContextFactory.setTrustStorePassword("123456");
-        }
-
         if (server == null) {
             QueuedThreadPool serverThreads = new QueuedThreadPool();
             serverThreads.setName("server");
             server = new Server(serverThreads);
         }
         connector = new ServerConnector(server, sslContextFactory);
+        connector.setPort(8080); //no random ports because Keycloak url response
         server.addConnector(connector);
         server.setHandler(handler);
         server.start();
