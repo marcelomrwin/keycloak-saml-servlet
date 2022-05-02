@@ -18,7 +18,6 @@ public class SecureServlet extends HttpServlet {
 
         response.getWriter().println(principal.getName());
         response.getWriter().println(principal.getAttributes());
-        response.getWriter().println(principal.getAssertionDocument());
     }
 
     @Override

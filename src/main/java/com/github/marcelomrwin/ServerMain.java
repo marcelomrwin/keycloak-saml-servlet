@@ -21,11 +21,14 @@ public class ServerMain {
         WebAppContext webAppContext = new WebAppContext();
         webAppContext.setContextPath("/");
         webAppContext.addServlet(SecureServlet.class, "/secure/*");
-
+        webAppContext.addServlet(NoAccessServlet.class,"/no-access");
 
         FilterHolder filterHolder = webAppContext.addFilter(SamlFilter.class, "/secure/*", EnumSet.of(DispatcherType.REQUEST));
         filterHolder.setInitParameter("keycloak.config.path", "/keycloak-saml.xml");
         webAppContext.addFilter(filterHolder, "/saml", EnumSet.of(DispatcherType.REQUEST));
+
+        webAppContext.addFilter(AuthorizationFilter.class, "/secure/*", EnumSet.of(DispatcherType.REQUEST));
+
         server.setHandler(webAppContext);
 
         // Load static content from inside the jar file.

@@ -15,7 +15,6 @@
         <jetty.version>9.4.46.v20220331</jetty.version>
         <exec.mainClass>com.github.marcelomrwin.ServerMain</exec.mainClass>
         <keycloak.version>18.0.0</keycloak.version>
-        <junit-jupiter.version>5.8.2</junit-jupiter.version>
     </properties>
 
     <dependencies>
@@ -49,40 +48,6 @@
             <artifactId>httpclient</artifactId>
             <version>4.5.13</version>
         </dependency>
-
-
-        <!--        <dependency>-->
-        <!--            <groupId>org.keycloak</groupId>-->
-        <!--            <artifactId>keycloak-jetty-core</artifactId>-->
-        <!--            <version>${keycloak.version}</version>-->
-        <!--        </dependency>-->
-
-        <!--        <dependency>-->
-        <!--            <groupId>org.keycloak</groupId>-->
-        <!--            <artifactId>keycloak-jetty-adapter-spi</artifactId>-->
-        <!--            <version>${keycloak.version}</version>-->
-        <!--        </dependency>-->
-
-        <!--        <dependency>-->
-        <!--            <groupId>org.keycloak</groupId>-->
-        <!--            <artifactId>keycloak-saml-jetty-adapter-core</artifactId>-->
-        <!--            <version>${keycloak.version}</version>-->
-        <!--        </dependency>-->
-
-
-        <!-- tests -->
-        <!--        <dependency>-->
-        <!--            <groupId>org.junit.jupiter</groupId>-->
-        <!--            <artifactId>junit-jupiter-api</artifactId>-->
-        <!--            <version>${junit-jupiter.version}</version>-->
-        <!--            <scope>test</scope>-->
-        <!--        </dependency>-->
-        <!--        <dependency>-->
-        <!--            <groupId>org.junit.jupiter</groupId>-->
-        <!--            <artifactId>junit-jupiter-engine</artifactId>-->
-        <!--            <version>${junit-jupiter.version}</version>-->
-        <!--            <scope>test</scope>-->
-        <!--        </dependency>-->
 
         <dependency>
             <groupId>junit</groupId>
